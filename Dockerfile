@@ -1,11 +1,11 @@
-FROM golang:1.18 as builder
+FROM  --platform=linux/amd64 golang:1.18 as builder
 WORKDIR /go/src/github.com/HanseMerkur/vault-logrotate
 COPY * ./
 RUN go get -d -v \
     && go build .
 
 
-FROM alpine:3.16
+FROM --platform=linux/amd64 alpine:3.16
 LABEL author="Lennart Weller <lennart.weller@hansemerkur.de>"
 
 ENV CRONTAB="0 * * * *"
